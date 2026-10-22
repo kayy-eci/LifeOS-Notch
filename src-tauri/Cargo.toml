@@ -1,0 +1,63 @@
+[package]
+name = "lifeos-notch"
+version = "0.1.0"
+description = "LifeOS Notch — a productivity notch for the top of your Windows desktop"
+authors = ["LifeOS Notch"]
+edition = "2021"
+rust-version = "1.77"
+
+[lib]
+# The `_lib` suffix is required so the lib name does not collide with the bin
+# name on Windows (rust-lang/cargo#8519).
+name = "lifeos_notch_lib"
+# `cdylib` and `staticlib` exist only for Tauri's mobile targets. Keeping them
+# on a desktop-only Windows build makes MinGW's `ld` export every symbol, which
+# fails with "export ordinal too large". `rlib` is what the desktop binary and
+# the test harness need.
+crate-type = ["rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "image-png"] }
+tauri-plugin-opener = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-autostart = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4"] }
+log = "0.4"
+rusqlite = { version = "0.40", features = ["bundled"] }
+# `rustls` (not `rustls-tls`) is the feature name in reqwest 0.13; `rustls`
+# also pulls in the platform certificate verifier, so the user's proxy and
+# root certificates are respected without shipping a CA bundle.
+# `native-tls` uses Windows SChannel — no bundled C crypto library to build, so
+# the GNU toolchain links cleanly. `rustls` was tried first and its `aws-lc-sys`
+# dependency failed to link under MinGW (`nanosleep` in thread_pthread.o).
+reqwest = { version = "0.13", default-features = false, features = ["json", "native-tls", "blocking", "charset", "http2", "query"] }
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "time", "macros", "sync"] }
+tiny_http = "0.12"
+urlencoding = "2"
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.62", features = [
+    "Foundation",
+    "Media_Control",
+    "Storage_Streams",
+    "Win32_Foundation",
+    "Win32_Security_Credentials",
+    "Win32_System_Com",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_Graphics_Imaging",
+] }
+
+# Read the optimization guideline for more details: https://tauri.app/concept/size/#cargo-configuration
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

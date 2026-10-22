@@ -1,0 +1,19 @@
+# Cargo configuration for the Windows GNU toolchain.
+#
+# This machine has no MSVC build tools and no administrator rights, so the app
+# builds against the x86_64-pc-windows-gnu target. The Rust GNU toolchain
+# ships only a linker stub for `gcc`, and `rusqlite`'s `bundled` feature needs
+# a real C compiler, so a user-local MinGW-w64 is used for both.
+#
+# Paths are absolute because cargo resolves this file from the crate
+# directory, and a relative path would break if the project were moved.
+
+[target.x86_64-pc-windows-gnu]
+
+# The linker that comes with the Rust GNU toolchain.
+linker = "C:\\Users\\62812\\.rustup\\toolchains\\stable-x86_64-pc-windows-gnu\\lib\\rustlib\\x86_64-pc-windows-gnu\\bin\\self-contained\\ld.exe"
+
+# The `cc` crate picks this up when compiling SQLite's C sources.
+[env]
+CC_x86_64_pc_windows_gnu = "C:\\Users\\62812\\.mingw64\\bin\\gcc.exe"
+AR_x86_64_pc_windows_gnu = "C:\\Users\\62812\\.mingw64\\bin\\ar.exe"

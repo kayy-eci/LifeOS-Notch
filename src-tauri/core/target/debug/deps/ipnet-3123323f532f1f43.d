@@ -1,0 +1,11 @@
+C:\Users\62812\Desktop\A.kayysan\PersonalProjectsLocal\LifeOSNotch\src-tauri\core\target\debug\deps\ipnet-3123323f532f1f43.d: C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\lib.rs C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\ipext.rs C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\ipnet.rs C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\mask.rs C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\parser.rs
+
+C:\Users\62812\Desktop\A.kayysan\PersonalProjectsLocal\LifeOSNotch\src-tauri\core\target\debug\deps\libipnet-3123323f532f1f43.rlib: C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\lib.rs C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\ipext.rs C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\ipnet.rs C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\mask.rs C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\parser.rs
+
+C:\Users\62812\Desktop\A.kayysan\PersonalProjectsLocal\LifeOSNotch\src-tauri\core\target\debug\deps\libipnet-3123323f532f1f43.rmeta: C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\lib.rs C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\ipext.rs C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\ipnet.rs C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\mask.rs C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\parser.rs
+
+C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\lib.rs:
+C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\ipext.rs:
+C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\ipnet.rs:
+C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\mask.rs:
+C:\Users\62812\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ipnet-2.12.2\src\parser.rs:

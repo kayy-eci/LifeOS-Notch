@@ -1,0 +1,75 @@
+@import "./tokens.css";
+
+/*
+ * The Tauri window is transparent; the page behind it must never paint a
+ * background of its own or the "transparent" window will read as an opaque
+ * rectangle.
+ */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* The notch is a small target: never let the webview rubber-band or
+     show a selection highlight while the pointer sweeps across it. */
+  user-select: none;
+  cursor: default;
+}
+
+/* Inputs are the one place where text selection is expected. */
+input,
+textarea,
+[contenteditable] {
+  user-select: text;
+}
+
+::selection {
+  background: var(--color-accent-muted);
+  color: var(--color-text);
+}
+
+/* Scrollbars inside panels: thin, and only visible where they matter. */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-track) transparent;
+}
+
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--color-track);
+  border-radius: var(--radius-pill);
+}
+
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* A consistent, restrained focus ring. Only shown for keyboard users. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-control);
+}
+
+/* Numeric readouts: mono with tabular figures so digits do not jitter. */
+.tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}

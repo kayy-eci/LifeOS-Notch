@@ -1,0 +1,19 @@
+[package]
+name = "lifeos-core"
+version = "0.1.0"
+edition = "2021"
+description = "Platform-independent domain logic for LifeOS Notch"
+
+[lib]
+name = "lifeos_core"
+path = "src/lib.rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4"] }
+log = "0.4"
+rusqlite = { version = "0.40", features = ["bundled"] }
+reqwest = { version = "0.13", default-features = false, features = ["json", "native-tls", "blocking", "charset", "http2", "query"] }

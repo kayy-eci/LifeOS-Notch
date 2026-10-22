@@ -1,0 +1,16 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Permissions for the notch window. Deliberately narrow: the notch has no filesystem, shell or process access, because every privileged operation goes through a Tauri command in the backend.",
+  "windows": ["notch"],
+  "permissions": [
+    "core:default",
+    "core:window:allow-set-size",
+    "core:window:allow-set-position",
+    "core:window:allow-start-dragging",
+    "core:event:default",
+    "opener:default",
+    "notification:default",
+    "autostart:default"
+  ]
+}

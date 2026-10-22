@@ -1,0 +1,153 @@
+/*
+ * LifeOS Notch — design tokens.
+ *
+ * These are the only source of colour, type, spacing, radius and elevation in the
+ * app. Components must not invent values; if a needed value is missing, add it
+ * here with a reason.
+ *
+ * The default Tailwind palette is cleared on purpose. `text-white` or
+ * `bg-blue-500` should not be available: every surface colour in LifeOS Notch
+ * has to be one of the tokens below, which keeps the panel reading as one
+ * coherent system instead of a collection of arbitrary fills.
+ */
+
+@import "tailwindcss";
+
+@theme {
+  /* ---------------------------------------------------------------------
+   * Colour
+   * A single dark surface family (the notch floats over an unknown
+   * wallpaper, so it owns its own contrast) plus four semantic hues.
+   * ------------------------------------------------------------------- */
+  --color-*: initial;
+
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-inherit: inherit;
+
+  /* Surfaces — from recessed to raised. */
+  --color-surface-sunken: #0f1114;
+  --color-surface: #16181c;
+  --color-surface-raised: #1e2126;
+  --color-surface-hover: #262a30;
+
+  /* Lines. Borders communicate grouping, not decoration. */
+  --color-border: rgb(255 255 255 / 0.09);
+  --color-border-strong: rgb(255 255 255 / 0.16);
+
+  /* Type. Three levels is enough for a utility this dense. */
+  --color-text: #e9ebee;
+  --color-text-muted: #a2a8b0;
+  --color-text-subtle: #767c85;
+
+  /* Accent — teal. Used for the active selection and for "in progress"
+   * states only, never as a large fill. */
+  --color-accent: #3fbfa8;
+  --color-accent-strong: #58d6bf;
+  --color-accent-contrast: #06231f;
+  --color-accent-muted: rgb(63 191 168 / 0.14);
+
+  /* Semantics. */
+  --color-success: #57c08a;
+  --color-success-muted: rgb(87 192 138 / 0.14);
+  --color-warning: #d9a441;
+  --color-warning-muted: rgb(217 164 65 / 0.14);
+  --color-danger: #e5645e;
+  --color-danger-muted: rgb(229 100 94 / 0.14);
+
+  /* Progress track — the unfilled portion of a meter. */
+  --color-track: rgb(255 255 255 / 0.12);
+
+  /* ---------------------------------------------------------------------
+   * Typography
+   * IBM Plex Sans: humanist but technical, holds up at 11–13px, and is not
+   * the usual Inter/system default. IBM Plex Mono is the numeric voice —
+   * timers, millilitres, track time — where digits must not reflow.
+   * ------------------------------------------------------------------- */
+  --font-sans: "IBM Plex Sans Variable", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Cascadia Mono", ui-monospace, monospace;
+
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.125rem;
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 0.875rem;
+  --text-base--line-height: 1.375rem;
+  --text-lg: 1rem;
+  --text-lg--line-height: 1.5rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.75rem;
+  --text-2xl--line-height: 2rem;
+
+  /* ---------------------------------------------------------------------
+   * Spacing — 4px base, only the steps the app actually uses.
+   * ------------------------------------------------------------------- */
+  --spacing: 0.25rem;
+
+  /* ---------------------------------------------------------------------
+   * Radius — small and consistent. A large radius reads as a consumer
+   * app; this is a technical utility, so surfaces stay close to square
+   * and only the notch itself is noticeably rounded.
+   * ------------------------------------------------------------------- */
+  --radius-control: 6px;
+  --radius-surface: 10px;
+  --radius-notch: 16px;
+  --radius-pill: 999px;
+
+  /* ---------------------------------------------------------------------
+   * Elevation — three levels that map to stacking order.
+   * ------------------------------------------------------------------- */
+  --shadow-notch: 0 4px 14px rgb(0 0 0 / 0.4);
+  --shadow-panel: 0 18px 48px rgb(0 0 0 / 0.55), 0 2px 6px rgb(0 0 0 / 0.4);
+  --shadow-pop: 0 10px 28px rgb(0 0 0 / 0.55);
+
+  /* ---------------------------------------------------------------------
+   * Motion — durations are short because the window resizes with them.
+   * ------------------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+
+  --animate-fade-in: fade-in 140ms var(--ease-out-quart);
+  --animate-slide-up: slide-up 180ms var(--ease-out-expo);
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/*
+ * `prefers-reduced-motion` is a hard requirement, not a nicety. When the OS
+ * asks for reduced motion every transition and animation in the app is
+ * collapsed to an instant state change — the app still works, it just stops
+ * moving.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

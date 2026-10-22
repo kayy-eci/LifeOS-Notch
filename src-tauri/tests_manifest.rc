@@ -1,0 +1,12 @@
+/*
+ * Resource script for the Rust test harness.
+ *
+ * `tauri-build` embeds `lifeos.manifest` into the application binary, but it
+ * does not touch the test harness that `cargo test` produces. Without the
+ * manifest the loader will not resolve the WinRT API-sets imported by the
+ * `windows` crate, and every test run dies with STATUS_ENTRYPOINT_NOT_FOUND
+ * before a single test executes.
+ *
+ * `build.rs` compiles this and links the result into the test binary only.
+ */
+1 24 "lifeos.manifest"

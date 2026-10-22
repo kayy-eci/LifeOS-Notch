@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  Embedded application manifest.
+
+  This is not cosmetic. Without a manifest that declares Windows 10 support,
+  the Windows loader refuses to resolve the WinRT API-sets that the `windows`
+  crate imports (api-ms-win-core-winrt-*.dll). The result is
+  STATUS_ENTRYPOINT_NOT_FOUND at startup, with no diagnostic beyond the exit
+  code.
+
+  The main application gets a manifest from `tauri-build`. The Rust test
+  harness does not, which is why `cargo test` used to fail to launch while
+  `cargo run` worked. `tests_manifest.rc` embeds this same file into the test
+  binary so both load identically.
+
+  `dpiAware` is declared because the notch computes its position in physical
+  pixels and would otherwise be scaled twice on a high-DPI display.
+-->
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <assemblyIdentity
+      type="win32"
+      name="LifeOS.Notch"
+      version="0.1.0.0"
+      processorArchitecture="*"/>
+
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- Windows 10 and Windows 11 -->
+      <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}"/>
+    </application>
+  </compatibility>
+
+  <application xmlns="urn:schemas-microsoft-com:asm.v3">
+    <windowsSettings>
+      <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true/pm</dpiAware>
+      <dpiAwareness xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">PerMonitorV2</dpiAwareness>
+      <longPathAware xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">true</longPathAware>
+    </windowsSettings>
+  </application>
+</assembly>
